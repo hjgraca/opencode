@@ -8,6 +8,35 @@
   </a>
 </p>
 <p align="center">The open source AI coding agent.</p>
+
+> **Note:** This is an unofficial fork that adds [Kiro](https://kiro.dev) as a provider. It is not built by the OpenCode team and is not affiliated with them. Based on PRs [anomalyco/opencode#20491](https://github.com/anomalyco/opencode/pull/20491) and [anomalyco/models.dev#1312](https://github.com/anomalyco/models.dev/pull/1312). See the upstream repo at [anomalyco/opencode](https://github.com/anomalyco/opencode).
+
+## Kiro provider - quick install (macOS Apple Silicon)
+
+```bash
+curl -L https://github.com/hjgraca/opencode/releases/download/kiro-preview/opencode-kiro-darwin-arm64.tar.gz | tar xz
+chmod +x opencode
+sudo mv opencode /usr/local/bin/opencode-kiro
+```
+
+Then authenticate and run:
+
+```bash
+opencode-kiro providers login   # select Kiro, follow the device code flow
+opencode-kiro                   # start the TUI
+```
+
+### Build from source
+
+```bash
+git clone -b feat/kiro-provider https://github.com/hjgraca/opencode.git
+cd opencode
+bun install
+./packages/opencode/script/build.ts --single
+./packages/opencode/dist/opencode-darwin-arm64/bin/opencode
+```
+
+---
 <p align="center">
   <a href="https://opencode.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/opencode-ai"><img alt="npm" src="https://img.shields.io/npm/v/opencode-ai?style=flat-square" /></a>
