@@ -115,7 +115,17 @@ export namespace ModelsDev {
       })
     })
     if (result && result.ok) {
-      await Filesystem.write(filepath, await result.text())
+      const fetched = JSON.parse(await result.text())
+      // @ts-ignore
+      const snapshot = await import("./models-snapshot.js")
+        .then((m) => m.snapshot as Record<string, unknown>)
+        .catch(() => undefined)
+      if (snapshot) {
+        for (const [id, provider] of Object.entries(snapshot)) {
+          if (!fetched[id]) fetched[id] = provider
+        }
+      }
+      await Filesystem.write(filepath, JSON.stringify(fetched))
       ModelsDev.Data.reset()
     }
   }
